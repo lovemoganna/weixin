@@ -1,0 +1,17 @@
+<import src="post-item/post-item-template.wxml" />
+<view>
+    <swiper indicator-dots="true" indicator-color="rgba(0, 0, 0, .3)" autoplay="true" interval="3000"
+            vertical="{{false}}" circular="true">
+    <block wx:for="{{swiper_key}}">
+        <view bindtap="onSwiperTap" data-id="{{item.id}}">
+            <template is="swiperItem" data="{{...item}}"/>
+        </view>
+    </block>
+    </swiper>
+    <block wx:for="{{posts_key}}">
+        <!--is = template name   data = 数据传递  item 指代的是posts_key上的一个子元素.-->
+        <view catchtap="onPostTap" data-postId="{{item.post_id}}" data-postName="const">
+            <template is="postItem" data="{{...item}}"/>
+        </view>
+    </block>
+</view>
