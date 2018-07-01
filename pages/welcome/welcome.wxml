@@ -1,0 +1,12 @@
+<view class="contanier">
+    <image id="user-avator" src="../../images/avatar/5.png"></image>
+    <view id="user">
+        <text>Hello , <text style='color: #A491BD'>落雨飘殇</text></text>
+    </view>
+    <view class="theme-contanier" bindtap="onTap">
+        <view id="theme">
+            <text>开启Re:make之旅</text>
+            <!--<text catchtap="onTextTap">开启Re:make之旅</text>-->
+        </view>
+    </view>
+</view>
