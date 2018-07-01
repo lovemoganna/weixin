@@ -1,0 +1,26 @@
+<!--先样式后数据,即先静后动-->
+<view class="container">
+  <image bindtap='onMusicTap' src="{{isPlayingMusic?'../../../images/music/music-start.png':'../../../images/music/music-stop.png'}}" class="head-music-start"></image>
+   <!-- <image src="../../../images/music/music-stop.png" class="head-music-stop"></image>  -->
+  <image src="{{isPlayingMusic?post_key.music.coverImgUrl:post_key.headImgSrc}}" class="head-img"></image>
+  <view class="author-date">
+    <image src="{{post_key.detailAvatar}}" class="author-avatar"></image>
+    <text class="author-name">{{post_key.author}}</text>
+    <text class="author-action">发表于</text>
+    <text class="author-replace-time">{{post_key.dateTime}}</text>
+  </view>
+  <text class="title">{{post_key.title}}</text>
+  <view class="tool">
+    <view class="circle-img">
+      <image bindtap='onShareTap' class='share-img' src="../../../images/icon/share.png"></image>
+      <!-- <image wx:else bindtap='onShareTag' class='share-img' src="../../../images/icon/share-anti.png"></image> -->
+      
+        <image wx:if="{{collected}}" bindtap='onCollectionTap' src="../../../images/icon/collection.png"></image>
+        <image wx:else bindtap='onCollectionTap'  src="../../../images/icon/collection-anti.png"></image>
+      
+    </view>
+    <!--下面这个view代表一个直线-->
+    <view class="horizon"></view>
+  </view>
+  <text class="detail">{{post_key.detail}}</text>
+</view>
