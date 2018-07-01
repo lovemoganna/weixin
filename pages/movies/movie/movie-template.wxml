@@ -1,0 +1,8 @@
+<import src="../stars/stars-template.wxml" />
+<template name="movieTemplate">
+        <view>
+            <image src="http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2520095279.webp"></image>
+            <text>头号玩家</text>
+            <template is="starsTemplate"></template>
+        </view>
+</template>
