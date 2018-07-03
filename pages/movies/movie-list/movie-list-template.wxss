@@ -1,0 +1,48 @@
+@import "../movie/movie-template.wxss";
+
+.movie-list-container {
+    border-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.inner-container{
+    margin: 0 auto 20rpx;
+}
+
+.movie-list-container .movie-head {
+    padding: 30rpx 20rpx 22rpx;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*space-around --平均分布*/
+    /*我们需要的是左右两端分布,类似于将下面的more部分浮动于右侧,但是有一个问题,二者并不是处于一个水平线上的,因为之前加了垂直居中.*/
+    /*justify-content: space-between;*/
+}
+
+.movie-list-container .movie-head .slogan {
+    font-size: 24rpx;
+    margin-top: 14rpx;
+}
+
+.movie-list-container .movie-head .more {
+    float: right;
+
+}
+
+.movie-list-container .movie-head .more .more-text {
+    /*盒子模型中不能使用垂直居中，无效*/
+    vertical-align: middle;
+    margin-right: 10rpx;
+    color: #1f4ba5;
+    font-size: 24rpx;
+}
+
+.movie-list-container .movie-head .more .more-img {
+    width: 20rpx;
+    height: 20rpx;
+    vertical-align: middle;
+}
+
+.movie-list-container .movie-container {
+    display: flex;
+    flex-direction: row;
+}
