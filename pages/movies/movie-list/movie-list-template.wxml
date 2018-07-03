@@ -1,0 +1,21 @@
+<import src="../movie/movie-template.wxml"/>
+
+<template name="movieListTemplate">
+    <view class="movie-list-container">
+        <view class="inner-container">
+            <view class="movie-head">
+                <text class="slogan">{{categoryTitle}}</text>
+                <!--绑定categoryTitle这个参数 是为了 知道点击了哪种电影的更多-->
+                <view class="more" bindtap="onMoreMovie" data-category="{{categoryTitle}}">
+                    <text class="more-text">更多</text>
+                    <image src="../../../images/icon/arrow-right.png" class="more-img"></image>
+                </view>
+            </view>
+            <view class="movie-container">
+                <block wx:for="{{movies}}" wx:for-item="movie">
+                    <template is="mTemplate" data="{{...movie}}" />
+                </block>
+            </view>
+        </view>
+    </view>
+</template>

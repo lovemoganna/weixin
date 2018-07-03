@@ -1,5 +1,6 @@
 // 可以认为它是一个本地的数据库文件
 //轮播图参数
+
 var local_swiper_content =
     [
         {swiper_image: '../../images/post/xiaolong.jpg', id: 0},
