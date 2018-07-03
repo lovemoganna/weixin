@@ -1,8 +1,8 @@
-<import src="../stars/stars-template.wxml" />
-<template name="movieTemplate">
-        <view>
-            <image src="http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2520095279.webp"></image>
-            <text>头号玩家</text>
-            <template is="starsTemplate"></template>
-        </view>
+<import src="../stars/stars-template.wxml"/>
+<template name="mTemplate">
+    <view class="movie-one-container" data-movieId="{{movieId}}">
+        <image src="{{movieImage}}" class="movie-img"/>
+        <text class="movie-title">{{title}}</text>
+        <template is="starsTemplate" data="{{stars:stars,score:average}}"/>
+    </view>
 </template>
