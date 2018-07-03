@@ -1,0 +1,56 @@
+$display: flex;
+$flex-direction: row;
+$mlc-flex-direction: column;
+$mlc-border-color: #ffffff;
+
+$mh-padding: 30rpx 20rpx 22rpx;
+$slogan-font-size: 24rpx;
+
+$mi-float: right;
+
+$mi-width: 20rpx;
+$mi-height: 20rpx;
+
+$mt-vertical-align: middle;
+$mt-margin-right: 10rpx;
+$mt-color: #1f4ba5;
+$mt-font-size:24rpx;
+
+$mi-vertical-align: middle;
+
+$mc-display: flex;
+$mc-flex-direction: row;
+
+.movie-list-container {
+  border-color: $mlc-border-color;
+  display: $display;
+  flex-direction: $mlc-flex-direction;
+  .movie-head {
+    //display: $display;
+    //flex-direction: $flex-direction;
+    //控制这一行跟上下左右的距离.
+    padding: $mh-padding;
+    .slogan {
+      font-size: $slogan-font-size;
+    }
+    .more {
+      float: $mi-float;
+      .more-text {
+        //文字和图片居中对齐
+        vertical-align: $mt-vertical-align;
+        margin-right: $mt-margin-right;
+        color: $mt-color;
+        font-size: $mt-font-size;
+      }
+      .more-img {
+        width: $mi-width;
+        height: $mi-height;
+        vertical-align: $mi-vertical-align;
+      }
+    }
+  }
+  .movie-container{
+    display: $mc-display;
+    flex-direction: $mc-flex-direction;
+  }
+}
