@@ -3,7 +3,12 @@ var data = app.globalData.hdbkBase;
 var util = require('../../../utils/utils.js');
 
 Page({
-    data: {},
+    data: {
+        movies: {},
+        navigateTitle: "",
+        requestUrl: "",
+        isEmpty: true
+    },
     onLoad: function (options) {
         //获取从movies.js写入的参数,来区分数据的入口.
         var category = options.category;
@@ -27,10 +32,33 @@ Page({
                 break;
         }
         util.http(dataUrl, this.processDoubanData);
+        this.setData({
+            requestUrl: dataUrl
+        })
+    },
+    onScrollLower: function (event) {
+        console.log("加载更多");
+        var nextUrl = this.data.requestUrl + "?start=" + this.data.totalCount + "&count=20";
+        util.http(nextUrl, this.processDoubanData);
+        //显示加载提示
+        wx.showNavigationBarLoading();
+        //将状态置空
+    },
+    onPullDownRefresh: function (event) {
+        console.log("刷新操作");
+        var nextUrl = this.data.requestUrl + "?start=0&count=20";
+        //我们只需要显示20条就号,这只是一个刷新操作
+        this.data.movies = {};
+        //将data的状态置空
+        this.data.isEmpty=true;
+        util.http(nextUrl, this.processDoubanData);
+        //显示加载提示
+        wx.showNavigationBarLoading();
     },
     //moviesDouban是callback传递的参数
     processDoubanData: function (moviesDouban) {
         var movies = [];
+        var totalCount = 0;
         for (var idx in moviesDouban.subjects) {
             var subject = moviesDouban.subjects[idx];
             // var m_title = moviesDouban.title;
@@ -59,13 +87,29 @@ Page({
             }
             movies.push(temp);
         }
-        console.log(movies);
+        // console.log(movies);
+        // this.data.totalCount += 20;
+
+        //定义一个空数组,我们将得到的20组的movies往里面组装.
+        var totalMovies = [];
+        if (!this.data.isEmpty) {
+            //将老数据和新数据合并在一起,所以此时我们需要绑定totalMovies
+            totalMovies = this.data.movies.concat(movies);
+        } else {
+            //data里面数据为null的情况下,我们需要改变此时data的状态为false
+            totalMovies = movies;
+            this.data.isEmpty = false;
+        }
         //将temp push到movie数组当中.
         this.setData(
             {
-                movies: movies
+                movies: totalMovies,
+                totalCount: totalCount += 20
             }
         )
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
+
     },
     onReady: function () {
         //页面渲染完成才能显示

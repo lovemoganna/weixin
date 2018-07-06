@@ -1,10 +1,13 @@
 {
   "pages": [
     "pages/movies/movies",
+    "pages/movies/movie-detail/movie-detail",
     "pages/movies/more-movie/more-movie",
+    "pages/features/features",
     "pages/welcome/welcome",
     "pages/post/post",
     "pages/post/post-detail/post-detail"
+
   ],
   "window": {
     "navigationBarBackgroundColor": "#405f80",
@@ -27,6 +30,12 @@
         "text": "电影",
         "iconPath":"images/tab/dianying.png",
         "selectedIconPath":"images/tab/dianying_hl.png"
+      },
+      {
+        "pagePath": "pages/features/features",
+        "text": "功能测试",
+        "iconPath":"images/tab/ciwei.png",
+        "selectedIconPath":"images/tab/ciwei_hl.png"
       }
     ]
   }

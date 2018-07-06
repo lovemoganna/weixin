@@ -1,5 +1,12 @@
 <import src="./movie-list/movie-list-template.wxml"/>
-<view class="m-container">
+<import src="./movie-grid/movie-grid-template.wxml"/>
+
+<view class="search">
+    <icon type="search" class="search-img" size="13" color="#405f80"></icon>
+    <input type="text" placeholder="奥特曼大战灭霸" placeholder-class="placeholder" bindfocus="onBindFocus" bindconfirm="onBindChange"/>
+    <image wx:if="{{movieSearchPanelShow}}" src="../../images/icon/xx.png" class="xx-img" bindtap="onCloseTap"></image>
+</view>
+<view class="m-container" wx:if="{{movieContainerShow}}">
        <view class="movie-template">
            <template  is="movieListTemplate" data="{{...inTheaters}}"/>
        </view>
@@ -9,4 +16,8 @@
        <view class="movie-template">
            <template  is="movieListTemplate" data="{{...top250}}"/>
        </view>
+</view>
+
+<view class="search-panel" wx:if="{{movieSearchPanelShow}}">
+    <template is="movieGridTemplate" data="{{...searchResult}}"/>
 </view>

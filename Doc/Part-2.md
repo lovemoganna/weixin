@@ -741,3 +741,238 @@ util.http(dataUrl, this.processDoubanData);
 ![](https://upload-images.jianshu.io/upload_images/7505161-fd520c585029b1f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
+### 上滑显示更多内容
+
+```text
+<import src="../movie/movie-template.wxml"/>
+
+<template name="movieGridTemplate">
+    <scroll-view scroll-y="true" lower-threshold="50rpx" bindscrolltolower="onScrollLower" class="gird-container">
+        <block wx:for="{{movies}}" wx:for-item="movie">
+            <view class="sing-view-contanier">
+                <template is="mTemplate" data="{{...movie}}"/>
+            </view>
+        </block>
+    </scroll-view>
+</template>
+```
+
+我们添加了scroll-view 这个标签,还有下拉显示更多内容,距离底部50rpx会触发这个下滑事件.
+
+我们在此事件中添加的JS如下
+```text
+  onScrollLower: function (event) {
+        console.log("加载更多");
+        var nextUrl = this.data.requestUrl + "?start=" + this.data.totalCount + "&count=20";
+        util.http(nextUrl, this.processDoubanData);
+    },
+```
+
+主要就是重新定义url的规则,因为我们想加载所有的数据.
+
+所以就需要对totalCount这个数据做特殊处理.
+
+很显然是start从0开始,且是20组数据,作为一个movies.
+
+我们只好给totalCount设置自增.步长是20.
+
+并且用新数据来拼接旧数据.
+
+所以我们用到 concat() 方法用于连接两个或多个数组。示例如下:
+
+```text
+var a = [1,2,3,4]
+var b =[4,5,6,7]
+//可以看出a,b却是结合了.
+a.concat(b)
+(8) [1, 2, 3, 4, 4, 5, 6, 7]
+
+console.log(a)
+VM5508:1 (4) [1, 2, 3, 4]
+undefined
+console.log(b)
+VM5511:1 (4) [4, 5, 6, 7]
+```
+
+但是不可否认的一点是刚开始的时候.我们的movies不能被剔除,因为我们绑定的数据就是movies.
+
+所以我们要监听Data的状态.如果一开始data不为空,我们就要改变监听参数的状态为false.
+
+
+```text
+
+这是data中的初始化数据:
+        movies: {},
+        navigateTitle: "",
+        requestUrl: "",
+        isEmpty: true        
+        
+        
+        
+//定义一个空数组,我们将得到的20组的movies往里面组装.
+        var totalMovies = [];
+        if (!this.data.isEmpty) {
+            //将老数据和新数据合并在一起,所以此时我们需要绑定totalMovies
+            totalMovies = this.data.movies.concat(movies);
+        } else {
+            //data里面数据为null的情况下,我们需要改变此时data的状态为false
+            totalMovies = movies;
+            this.data.isEmpty = false;
+        }
+        //将temp push到movie数组当中.
+        this.setData(
+            {
+                movies: totalMovies,
+                totalCount: totalCount += 20
+            }
+        )
+```
+
+### 动态设置loding状态
+```text
+wx.showNavigationBarLoading();
+wx.hideNavigationBarLoading();
+```
+
+### 开启下拉刷新
+```text
+{
+  "enablePullDownRefresh": true
+}
+
+然后绑定刷新事件,它是直接存在的,这个事件.
+
+ onPullDownRefresh: function (event) {
+        console.log("刷新操作");
+        var nextUrl = this.data.requestUrl + "?start=0&count=20";
+        //我们只需要显示20条就号,这只是一个刷新操作
+        this.data.movies = {};
+        //将data的状态置空
+        this.data.isEmpty=true;
+        util.http(nextUrl, this.processDoubanData);
+        //显示加载提示
+        wx.showNavigationBarLoading();
+    },
+    
+  注意我们每次刷新的时候,仅仅需要20条数据,所以需要我们将data的状态置空.  
+
+```
+## Page里面的backgroundColor与Json里面的backgroundColor的区别
+
+从welcome.wxss 与 more-movie.json来看
+
+前者是整个页面的颜色
+
+后者如下:
+```text
+{
+  "enablePullDownRefresh": true,
+  "backgroundColor": "red"
+}
+从Json里面加载的是上拉后显示的颜色.
+```
+
+## 输入框的实现
+
+1.激活input事件,弹出搜索页面出来.
+
+2.监听文字输入完成,回车,向豆瓣请求数据.
+
+3.失去焦点的时候,进行数据解析.
+
+4.输入完成之后,点击之后,才会出现结果.
+
+
+
+实现思想:就是通过控制
+```
+ onCloseTap:function(){
+        //绑定了一个清除当前状态的事件.回归原来的页面
+        this.setData({
+            movieContainerShow:true,
+            movieSearchPanelShow:false
+        })
+    },
+    onBindFocus: function () {
+        //点击搜索栏,输入框获得焦点
+        console.log('you click me !');
+        //改变既有数据的状态
+        this.setData({
+            movieContainerShow:false,
+            movieSearchPanelShow:true
+        })
+    },
+```
+
+movie.wxml
+```
+<view class="m-container" wx:if="{{movieContainerShow}}">
+       <view class="movie-template">
+           <template  is="movieListTemplate" data="{{...inTheaters}}"/>
+       </view>
+       <view class="movie-template">
+           <template  is="movieListTemplate" data="{{...comingSoon}}"/>
+       </view>
+       <view class="movie-template">
+           <template  is="movieListTemplate" data="{{...top250}}"/>
+       </view>
+</view>
+
+<view class="search-panel" wx:if="{{movieSearchPanelShow}}">
+    <template is="movieGridTemplate"/>
+</view>
+```
+
+### 关于搜索电影
+
+我们首先要获取豆瓣搜索电影的的API,然后再做数据清洗的处理,最终定义一个将结果存储到data中.
+
+如下:
+
+```
+onBindChange: function (event) {
+        //触发搜索事件bindconfirm专门响应键盘的"完成"事件.
+        console.log('you search me ');
+        var text = event.detail.value;
+        // console.log(text)
+        var searchUrl = data+'/v2/movie/search?q=' + text;
+        this.getMovieListData(searchUrl,'searchResult','');
+    }
+```
+关于搜索栏我们可以绑定下面的事件
+```
+<input type="text" placeholder="奥特曼大战灭霸" placeholder-class="placeholder" bindfocus="onBindFocus" bindblur="onBindChange"/>
+```
+
+
+```
+bindinput	EventHandle		键盘输入时触发，event.detail = {value, cursor, keyCode}，keyCode 为键值，2.1.0 起支持，处理函数可以直接 return 一个字符串，将替换输入框的内容。	
+bindfocus	EventHandle		输入框聚焦时触发，event.detail = { value, height }，height 为键盘高度，在基础库 1.9.90 起支持	
+bindblur	EventHandle		输入框失去焦点时触发，event.detail = {value: value}	
+bindconfirm	EventHandle		点击完成按钮时触发，event.detail = {value: value}
+```
+bindinput会频繁的调用请求,尼玛,输入一个字都要响应,豆瓣还不疯了.
+
+
+## 编写电影详情页跳转
+
+肯定url绑定的参数是ID
+```
+    onMovieTap:function (options) {
+        //根据电影ID进入电影详情页
+        //这个地方一定要注意,movieid 要小写!!!
+        var movieId = options.currentTarget.dataset.movieid;
+        wx.navigateTo({
+            url: 'movie-detail/movie-detail?movieId=' + movieId
+        })
+    },
+```
+
+跳转到movie-detail.js
+
+后接收movieid参数,然后根据参数调用.根据WX的HTTP请求取得JSON数据,然后清洗JSON数据,各种组装数据.
+
+如果有你不会组装数据,你可以做实验啊.ijsnotebook 类似于jupyter. 你可以搜索一下.
+
+## 编写电影详情页数据
+

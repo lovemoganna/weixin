@@ -1,8 +1,41 @@
 @import "movie-list/movie-list-template.wxss";
+@import "movie-grid/movie-grid-template.wxss";
 
 .m-container {
     background-color: #ffffff;
 }
 .movie-template{
     margin-bottom: 30rpx;
+}
+.search{
+    background-color: #f2f2f2;
+    height: 80rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.search input{
+    height: 100%;
+    width: 600rpx;
+    margin-left: 20rpx;
+    font-size: 28rpx;
+}
+.search-img{
+    margin: auto 0 auto 20rpx;
+}
+.placeholder{
+    font-size: 24rpx;
+    color: #d1d1d1;
+    margin-left: 20rpx;
+}
+.search-panel{
+    /*让搜索的结果可以浮动在整个电影页面上面.*/
+    position: absolute;
+    /*距离搜索框80rpx*/
+    top: 80rpx;
+}
+.xx-img{
+    width: 22rpx;
+    height: 22rpx;
+    margin: auto 0 auto 50rpx;
 }

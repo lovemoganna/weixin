@@ -1,8 +1,9 @@
 @import "../movie/movie-template.wxss";
 .gird-container{
+    height: 1300rpx;
     margin: 40rpx 0rpx 20rpx 6rpx;
 }
 .sing-view-contanier{
     float: left;
-    margin-bottom: 20rpx;
+    margin-bottom:0px;
 }
