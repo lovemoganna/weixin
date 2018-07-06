@@ -19,7 +19,7 @@ function convertToStarsArray(stars) {
 
 //异步方法
 // function http(dataUrl,callback,method="")
-function http(dataUrl,callback) {
+function http(dataUrl, callback) {
     var that = this;
     wx.request({
         url: dataUrl,
@@ -38,8 +38,21 @@ function http(dataUrl,callback) {
     })
 }
 
+function convertToCastInfos(casts) {
+    var castArray = []
+    for (var idx in casts) {
+        var cast = {
+            img: casts[idx].avatars ? casts[idx].avatars.large : '',
+            name: casts[idx].name,
+            idx: casts[idx].id
+        }
+        castArray.push(cast)
+    }
+    return castArray;
+}
 
 module.exports = {
     starsInArray: convertToStarsArray,
-    http:http
+    http: http,
+    convertToCastInfos:convertToCastInfos
 }
