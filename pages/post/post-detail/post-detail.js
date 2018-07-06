@@ -100,12 +100,14 @@ Page({
             musicPlayingMusic = false;
             curentPlayingMusic = null;
         })
-        // //监听音乐停止。
-        // wx.onBackgroundAudioStop(function() {
-        //   that.setData({
-        //     isPlayingMusic: false
-        //   })
-        // })
+        //监听音乐停止。
+        wx.onBackgroundAudioStop(function () {
+            that.setData({
+                isPlayingMusic: false
+            })
+            musicPlayingMusic = false;
+            curentPlayingMusic = null;
+        })
     },
     onCollectionTap: function (event) {
         console.log('hello stroge');

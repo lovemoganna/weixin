@@ -1,6 +1,6 @@
 <import src="../stars/stars-template.wxml"/>
 <template name="mTemplate">
-    <view class="movie-one-container" data-movieId="{{movieId}}">
+    <view class="movie-one-container" bindtap="onMovieTap" data-movieId="{{movieId}}" >
         <image src="{{movieImage}}" class="movie-img"/>
         <text class="movie-title">{{title}}</text>
         <template is="starsTemplate" data="{{stars:stars,score:average}}"/>
