@@ -976,3 +976,234 @@ bindinput会频繁的调用请求,尼玛,输入一个字都要响应,豆瓣还�
 
 ## 编写电影详情页数据
 
+注意图片裁剪属性 mode的用法
+
+## 小程序更新的注意事项
+
+1.redirect和navigateto的不支持带有tab的跳转,应该使用`wx.switchTab`
+
+2.Page的onLoad函数里面不可以用`this.data.xx ==xx` 来进行赋值了.这种数据绑定的方式在onLoad里面是无效的.
+
+3.wx.request里面,问题是 'Content-Type : application/xml'
+
+![](https://mp.weixin.qq.com/debug/wxadoc/dev/image/mina-lifecycle.png?t=2018626)
+
+现在onLoad中绑定变量,然后再对这些变量做一些渲染.
+
+## 新闻详情页面
+
+```js
+var app = getApp();
+var data = app.globalData.hdbkBase;
+
+var util = require('../../../utils/utils.js');
+Page({
+    data: {},
+    onLoad: function (options) {
+        var movieId = options.movieId;
+        var url = data + '/v2/movie/subject/' + movieId;
+        var result = util.http(url, this.processDoubanData);
+    },
+    processDoubanData: function (res) {
+        if (!res){
+            return;
+        }
+        var director = {
+            avatar: '',
+            name: '',
+            id: ''
+        }
+        //导演的一些数据
+        if (res.directors[0] != null) {
+            if (res.directors[0].avatars != null) {
+                director.avatar = res.directors[0].avatars.large
+            }
+            director.name = res.directors[0].name;
+            director.id = res.directors[0].id;
+        }
+        var reviews_count = res.reviews_count;
+        var wish_count = res.wish_count;
+        var year = res.year;
+        var images = res.images ? res.images.large : '';
+        var title = res.title;
+        var countries = res.countries[0];
+
+        var genre = res.genres;
+        // 处理genres
+        var genres = []
+        for (var i in genre) {
+            genres = genres + genre[i] + '/'
+        }
+        //获得我们想要的 剧情/动作/冒险格式
+        genres = genres.substring(0, genres.length - 1);
+
+        var collect_count = res.collect_count;
+
+        //演员的数据
+        // var cast = {
+        //     avatar: '',
+        //     name: '',
+        //     id: ''
+        // }
+        var cast_more = []
+        //获取所有演员的数据
+        var casts = res.casts;
+        var cast_more =util.convertToCastInfos(casts);
+        // for (var item in casts) {
+        //     var oneCast = casts[item]
+        //     if (oneCast.avatars != null) {
+        //         var avatar = oneCast.avatars.large;
+        //         cast.avatar = avatar;
+        //     }
+        //     cast.name = oneCast.name;
+        //     cast.id = oneCast.id;
+        //     cast_more.push(oneCast)
+        // }
+
+        var original_title = res.original_title;
+        //电影简介
+        var summary = res.summary;
+        var subtype = res.subtype;
+        //全部评论
+        var comments_count = res.comments_count;
+        //评价人数
+        var ratings_count = res.ratings_count;
+        var aka = res.aka;
+        //处理电影的别名
+        var akas = []
+        for (var idx in aka) {
+            akas += aka[idx] + '/'
+        }
+        akas = akas.substring(0, akas.length - 1)
+
+        //引入星星
+        var star =res.rating.stars;
+        var stars = util.starsInArray(star);
+        //引入评分
+        var average = res.rating.average;
+        //关于电影本身的数据
+        var movie = {
+            reviews_count: reviews_count,
+            wish_count: wish_count,
+            year: year,
+            images: images,
+            title: title,
+            countries: countries,
+            genres: genres,
+            collect_count: collect_count,
+            original_title: original_title,
+            summary: summary,
+            subtype: subtype,
+            comments_count: comments_count,
+            ratings_count: ratings_count,
+            akas: akas,
+            stars:stars,
+            average:average
+        }
+        this.setData({
+            casts: cast_more,
+            director: director,
+            movie: movie
+        })
+    }
+})
+```
+movie-detail.wxml
+```
+<import src="../stars/stars-template.wxml"/>
+<view class="container">
+    <image class="head-img" src="{{movie.images}}" mode="aspectFill"/>
+    <!--<view class="head-img-hover" data-src="{{movie.images}}" bindtap="viewMoviePostIng"></view>-->
+    <view clsss="head-img-hover">
+        <text class="main-title">{{movie.title}}</text>
+        <text class="sub-title">{{movie.countries + "." + movie.year}}</text>
+        <view class="like">
+            <text class="highlight-like">
+                {{movie.wish_count}}
+            </text>
+            <text class="plain-font">
+                人喜欢看
+            </text>
+            <text class="highlight-font">
+                {{movie.comments_count}}
+            </text>
+            <text class="plain-font">
+                条评论
+            </text>
+        </view>
+        <!--悬浮的图片-->
+        <image class="movie-img" src="{{movie.images}}"/>
+    </view>
+    <!--人物区域-->
+    <view class="summary">
+        <view class="original-title">
+            <text>{{movie.original_title}}</text>
+        </view>
+        <view class="flex-row">
+            <text class="mark">评分</text>
+            <template is="starsTemplate" data="{{stars:movie.stars,score:movie.score}}"></template>
+        </view>
+        <view class="flex-row">
+            <text class="mark">导演</text>
+            <text>{{director.name}}</text>
+        </view>
+        <view class="flex-row">
+            <text class="mark">演员</text>
+            <block wx:for="{{casts}}" wx:for-item="item">
+                <text>{{item.name}}</text>
+                <text> / </text>
+            </block>
+        </view>
+        <view class="flex-row">
+            <text class="mark">类型</text>
+            <text>{{movie.genres}}</text>
+        </view>
+
+    </view>
+
+
+    <!--分割线-->
+    <view class="hr"></view>
+
+    <view class="synopsis">
+        <text >剧情简介</text>
+        <text class="summary-content">{{movie.summary}}</text>
+    </view>
+    <view class="hr"></view>
+
+    <view class="cast">
+        <text>演员</text>
+        <!--图片横向滚动-->
+        <scroll-view class="cast-imgs" scroll-x="true" style="width: 100%;">
+            <block wx:for="{{casts}}" wx:for-item="item">
+                <view class="cast-container">
+                    <image class="cast-img" src="{{item.img}}"></image>
+                    <text class="cast-name">{{item.name}}</text>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+</view>
+```
+
+模糊效果
+```
+html声明 mode="aspectFill" 截取图片的中间部分.
+
+CSS中
+-webkit-filter: blur(20px);
+尽量让模糊的图片切割的时候颜色少一些.也就是只取图片的一部分.模糊效果会更好.
+
+```
+## 添加预览图片的内容
+
+```html
+ viewMoviePostImg: function (e) {
+        // 预览图片的方法
+        var src = e.currentTarget.dataset.src;
+        wx.previewImage({
+        current: src, //当前显示的图片的HTTP链接
+          urls: [src] // 需要预览的图片的HTTP链接列表
+        })
+    }
+```

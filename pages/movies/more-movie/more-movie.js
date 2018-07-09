@@ -51,6 +51,7 @@ Page({
         this.data.movies = {};
         //将data的状态置空
         this.data.isEmpty=true;
+        this.data.totalCount =0;
         util.http(nextUrl, this.processDoubanData);
         //显示加载提示
         wx.showNavigationBarLoading();
@@ -117,6 +118,14 @@ Page({
             title: this.data.navigateTitle,
             success: function () {
             }
+        })
+    },
+    onMovieTap:function (options) {
+        //根据电影ID进入电影详情页
+        //这个地方一定要注意,movieid 要小写!!!
+        var movieId = options.currentTarget.dataset.movieid;
+        wx.navigateTo({
+            url: '../movie-detail/movie-detail?movieId=' + movieId
         })
     },
     onshow: function () {
