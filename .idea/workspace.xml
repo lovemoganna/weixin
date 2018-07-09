@@ -135,6 +135,11 @@
               <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
               <item name="weixin" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weixin" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -229,12 +234,12 @@
       <workItem from="1530888324030" duration="14230000" />
       <workItem from="1530938064429" duration="820000" />
       <workItem from="1530982730941" duration="89000" />
-      <workItem from="1531116406035" duration="15601000" />
+      <workItem from="1531116406035" duration="15604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="250950000" />
+    <option name="totallyTimeSpent" value="250953000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
