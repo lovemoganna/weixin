@@ -1,23 +1,39 @@
-<view class="section">
-    <view class="section__title">vertical scroll</view>
-    <scroll-view scroll-y style="height: 200px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-        <view id="green" class="scroll-view-item bc_green"></view>
-        <view id="red"  class="scroll-view-item bc_red"></view>
-        <view id="yellow" class="scroll-view-item bc_yellow"></view>
-        <view id="blue" class="scroll-view-item bc_blue"></view>
-    </scroll-view>
+<view class="container">
+    <image class="head-img" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p4023.webp" mode="aspectFit"></image>
+</view>
 
-    <view class="btn-area">
-        <button size="mini" bindtap="tap">click me to scroll into view </button>
-        <button size="mini" bindtap="tapMove">click me to scroll</button>
-    </view>
-</view>
-<view class="section section_gap">
-    <view class="section__title">horizontal scroll</view>
-    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-        <view id="green" class="scroll-view-item_H bc_green"></view>
-        <view id="red"  class="scroll-view-item_H bc_red"></view>
-        <view id="yellow" class="scroll-view-item_H bc_yellow"></view>
-        <view id="blue" class="scroll-view-item_H bc_blue"></view>
-    </scroll-view>
-</view>
+<!--
+aspectFit ---居中靠顶部缩放图片,这个比较合理啊.
+scaleToFill---在指定的宽高下,图片的宽高完全拉伸至填满 image 元素
+
+aspectFill---只保证图片的短边能完全显示出来,比如这张图片的上部没有全部显示出来.
+widthFix---宽度不变，高度自动变化，保持原图宽高比不变.高度是整个屏幕的高度.
+top ---不缩放图片，只显示图片的顶部区域. 设置高度太大,超出高度隐藏.
+bottom---不缩放图片，只显示图片的底部区域
+
+
+模式	值	说明
+缩放	scaleToFill	不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素
+缩放	aspectFit	保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。
+缩放	aspectFill	保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。
+缩放	widthFix	宽度不变，高度自动变化，保持原图宽高比不变
+
+下面的试试一两个就知道什么意思了.
+
+
+裁剪	top	不缩放图片，只显示图片的顶部区域
+裁剪	bottom	不缩放图片，只显示图片的底部区域
+裁剪	center	不缩放图片，只显示图片的中间区域
+裁剪	left	不缩放图片，只显示图片的左边区域
+裁剪	right	不缩放图片，只显示图片的右边区域
+裁剪	top left	不缩放图片，只显示图片的左上边区域
+裁剪	top right	不缩放图片，只显示图片的右上边区域
+裁剪	bottom left	不缩放图片，只显示图片的左下边区域
+裁剪	bottom right	不缩放图片，只显示图片的右下边区域
+-->
+
+<!--只有你定高定宽了.才会存在着缩放的概念.
+
+    如果你的原始图片不设置CSS样式,小程序会帮你拉伸.很难看.
+    image组件默认宽度300px、高度225px
+-->
