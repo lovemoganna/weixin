@@ -10,7 +10,7 @@ Page({
         var result = util.http(url, this.processDoubanData);
     },
     processDoubanData: function (res) {
-        if (!res){
+        if (!res) {
             return;
         }
         var director = {
@@ -45,15 +45,15 @@ Page({
         var collect_count = res.collect_count;
 
         //演员的数据
-        var cast = {
-            avatar: '',
-            name: '',
-            id: ''
-        }
+        // var cast = {
+        //     avatar: '',
+        //     name: '',
+        //     id: ''
+        // }
         var cast_more = []
         //获取所有演员的数据
         var casts = res.casts;
-        var cast_more =util.convertToCastInfos(casts);
+        var cast_more = util.convertToCastInfos(casts);
         // for (var item in casts) {
         //     var oneCast = casts[item]
         //     if (oneCast.avatars != null) {
@@ -82,7 +82,7 @@ Page({
         akas = akas.substring(0, akas.length - 1)
 
         //引入星星
-        var star =res.rating.stars;
+        var star = res.rating.stars;
         var stars = util.starsInArray(star);
         //引入评分
         var average = res.rating.average;
@@ -102,13 +102,21 @@ Page({
             comments_count: comments_count,
             ratings_count: ratings_count,
             akas: akas,
-            stars:stars,
-            average:average
+            stars: stars,
+            average: average
         }
         this.setData({
-            cast_more: cast_more,
+            casts: cast_more,
             director: director,
             movie: movie
+        })
+    },
+    viewMoviePostImg: function (e) {
+        // 预览图片的方法
+        var src = e.currentTarget.dataset.src;
+        wx.previewImage({
+        current: src, //当前显示的图片的HTTP链接
+          urls: [src] // 需要预览的图片的HTTP链接列表
         })
     }
 })
