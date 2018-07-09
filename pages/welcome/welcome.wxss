@@ -30,6 +30,9 @@ page {
     /*粗体*/
     font-weight: bold;
 }
+#user .userText{
+    font-size: 38rpx;
+}
 .theme-contanier {
     margin-top: 150rpx;
     border: 2rpx solid hsla(191, 38%, 58%, .9);
@@ -45,6 +48,9 @@ page {
     /*设置垂直居中*/
     line-height: 76rpx;
     color: hsla(191, 38%, 58%, .9);
+}
+#theme .text{
+    font-size: 38rpx;
 }
 
 

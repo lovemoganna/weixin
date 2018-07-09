@@ -52,8 +52,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/pages/post/post-item/post-item-template.wxml" />
         <option value="$PROJECT_DIR$/pages/post/post.wxml" />
         <option value="$PROJECT_DIR$/pages/post/post.js" />
         <option value="$PROJECT_DIR$/Doc/Part-1.md" />
@@ -70,7 +68,6 @@
         <option value="$PROJECT_DIR$/pages/movies/movie/movie-template.wxss" />
         <option value="$PROJECT_DIR$/Doc/Scss/movie-list-template.css" />
         <option value="$PROJECT_DIR$/Doc/Scss/movie-list-template.scss" />
-        <option value="$PROJECT_DIR$/data/posts-data.js" />
         <option value="$PROJECT_DIR$/Doc/dos.txt" />
         <option value="$PROJECT_DIR$/Doc/dos.md" />
         <option value="$PROJECT_DIR$/app.js" />
@@ -83,7 +80,6 @@
         <option value="$PROJECT_DIR$/pages/movies/movies.wxss" />
         <option value="$PROJECT_DIR$/pages/movies/movies.wxml" />
         <option value="$PROJECT_DIR$/pages/movies/more-movie/more-movie.json" />
-        <option value="$PROJECT_DIR$/pages/post/post-detail/post-detail.js" />
         <option value="$PROJECT_DIR$/pages/movies/movie-detail/movie-detail.json" />
         <option value="$PROJECT_DIR$/pages/movies/movies.js" />
         <option value="$PROJECT_DIR$/pages/movies/movies.json" />
@@ -96,13 +92,17 @@
         <option value="$PROJECT_DIR$/pages/movies/stars/stars-template.wxss" />
         <option value="$PROJECT_DIR$/pages/movies/movie-detail/demo.js" />
         <option value="$PROJECT_DIR$/utils/utils.js" />
-        <option value="$PROJECT_DIR$/app.json" />
         <option value="$PROJECT_DIR$/app.wxss" />
         <option value="$PROJECT_DIR$/pages/movies/more-movie/more-movie.js" />
         <option value="$PROJECT_DIR$/pages/movies/movie-detail/movie-detail.wxss" />
         <option value="$PROJECT_DIR$/pages/movies/movie-detail/movie-detail.wxml" />
         <option value="$PROJECT_DIR$/pages/movies/movie-detail/movie-detail.js" />
         <option value="$PROJECT_DIR$/Doc/Part-2.md" />
+        <option value="$PROJECT_DIR$/app.json" />
+        <option value="$PROJECT_DIR$/pages/post/post-detail/post-detail.js" />
+        <option value="$PROJECT_DIR$/data/posts-data.js" />
+        <option value="$PROJECT_DIR$/pages/welcome/welcome.wxss" />
+        <option value="$PROJECT_DIR$/pages/welcome/welcome.wxml" />
       </list>
     </option>
   </component>
@@ -117,11 +117,10 @@
       <path value="$PROJECT_DIR$/towxml/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="155" />
-    <option name="y" value="19" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="310" />
     <option name="width" value="1093" />
-    <option name="height" value="714" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -147,6 +146,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/360Downloads/weixin/pages/movies/movies.wxml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
+    <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="E:/webStromProject/NodeJS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -229,12 +229,12 @@
       <workItem from="1530888324030" duration="14230000" />
       <workItem from="1530938064429" duration="820000" />
       <workItem from="1530982730941" duration="89000" />
-      <workItem from="1531116406035" duration="12858000" />
+      <workItem from="1531116406035" duration="15601000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248207000" />
+    <option name="totallyTimeSpent" value="250950000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -246,14 +246,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="155" y="19" width="1093" height="714" extended-state="1" />
+    <frame x="310" y="0" width="1093" height="728" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49261084" visible="true" weight="0.25852272" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5003897" side_tool="true" weight="0.18555008" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32833335" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49961028" weight="0.36868685" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49961028" weight="0.36702126" />
       <window_info id="Structure" order="1" sideWeight="0.5073892" side_tool="true" weight="0.2133829" />
       <window_info anchor="bottom" id="CSS-X-Fire" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32546374" />
@@ -300,9 +300,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/images/icon/chat.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/icon/arrow-right.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -347,13 +344,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/posts-data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3050">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Doc/css.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -403,13 +393,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/welcome/welcome.wxss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/icon/xx.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -445,13 +428,6 @@
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/post/post-detail/post-detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="98" column="15" lean-forward="true" selection-start-line="98" selection-start-column="15" selection-end-line="98" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -560,13 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/movies/more-movie/more-movie.wxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -633,6 +602,47 @@
             <caret line="1209" lean-forward="true" selection-start-line="1209" selection-end-line="1209" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/post/post-detail/post-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="54" lean-forward="true" selection-start-column="54" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/posts-data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/welcome/welcome.wxss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/welcome/welcome.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#text#0;n#text#0;n#view#0;n#view#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
